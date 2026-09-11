@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="light-theme">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#top">Badri Narayanan Narasimhan</a>
@@ -25,9 +25,9 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="theme-toggle" type="button" aria-label="Switch to light background" aria-pressed="false">
+      <button class="theme-toggle" type="button" aria-label="Switch to dark background" aria-pressed="true">
         <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span>
-        <span class="theme-toggle-label">Light</span>
+        <span class="theme-toggle-label">Dark</span>
       </button>
     </div>
   </header>
@@ -38,22 +38,22 @@
         <p class="eyebrow interaction-eyebrow">BIOMATERIALS · MECHANOBIOLOGY · CELL MIGRATION</p>
 
         <div class="hero-brand-lockup" aria-label="InBIOX | Interactions Bioengineering">
-          <span class="interaction-mark hero-mark-v10 distributed-logo" aria-hidden="true">
-        <i></i><i></i>
-        <b class="interaction-dot dot-a"></b>
-        <b class="interaction-dot dot-b"></b>
-        <b class="interaction-dot dot-c"></b>
-        <b class="interaction-dot dot-d"></b>
-        <b class="interaction-dot dot-e"></b>
-        <b class="interaction-dot dot-f"></b>
-        <b class="interaction-dot dot-g"></b>
-        <b class="interaction-dot dot-h"></b>
-        <b class="interaction-dot dot-i"></b>
-      </span>
-      <div class="hero-title-group">
-        <h1><span>Interactions</span><span>Bioengineering</span></h1>
-        <span class="hero-acronym">InBIOX</span>
-      </div>
+          <div class="hero-mark-group">
+            <span class="interaction-mark hero-mark-v10 distributed-logo" aria-hidden="true">
+              <i></i><i></i>
+              <b class="interaction-dot dot-a"></b>
+              <b class="interaction-dot dot-b"></b>
+              <b class="interaction-dot dot-c"></b>
+              <b class="interaction-dot dot-d"></b>
+              <b class="interaction-dot dot-e"></b>
+              <b class="interaction-dot dot-f"></b>
+              <b class="interaction-dot dot-g"></b>
+              <b class="interaction-dot dot-h"></b>
+              <b class="interaction-dot dot-i"></b>
+            </span>
+            <span class="hero-acronym">InBIOX</span>
+          </div>
+          <h1><span>Interactions</span><span>Bioengineering</span></h1>
         </div>
 
         <p class="hero-subline hero-subline-v10">Technologies to quantify and model interactions across scales.</p>
@@ -487,9 +487,10 @@
         if (label) label.textContent = light ? 'Dark' : 'Light';
       }
 
-      let light = false;
+      let light = true;
       try {
-        light = localStorage.getItem('badri-site-theme-v19') === 'light';
+        const savedTheme = localStorage.getItem('badri-site-theme-v19');
+        light = savedTheme === null ? true : savedTheme === 'light';
       } catch (e) {}
       applyTheme(light);
 
