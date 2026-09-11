@@ -2909,3 +2909,44 @@ body.light-theme .selected-work .collab-image {
     min-height: 190px !important;
   }
 }
+
+/* InBIOX brand identifier beside the main hero title */
+.hero-title-group {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(18px, 2vw, 30px);
+  min-width: 0;
+}
+
+.hero-title-group h1 {
+  flex: 0 1 auto;
+}
+
+.hero-acronym {
+  display: inline-block;
+  margin-bottom: 0.18em;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1rem, 1.55vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  color: #d7ddda;
+}
+
+@media (max-width: 1100px) {
+  .hero-title-group {
+    display: block;
+  }
+  .hero-acronym {
+    margin-top: 14px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-acronym {
+    font-size: 0.95rem;
+    margin-top: 12px;
+  }
+}
