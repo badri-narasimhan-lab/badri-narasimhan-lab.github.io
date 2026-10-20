@@ -13,13 +13,14 @@
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="index.html">Badri Narayanan Narasimhan</a>
-    <nav class="nav">
+    <nav class="nav" id="site-navigation" aria-label="Main navigation">
       <a href="index.html#research">Research</a>
       <a href="index.html#work">Selected Work</a>
       <a href="publications.html">Publications</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
     </nav>
+      <button class="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="site-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
       <button class="theme-toggle" type="button" aria-label="Switch to light background" aria-pressed="false">
         <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span>
         <span class="theme-toggle-label">Light</span>
@@ -119,6 +120,29 @@
           localStorage.setItem('badri-site-theme-v19', nextLight ? 'light' : 'dark');
         } catch (e) {}
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      const toggle = document.querySelector('.mobile-menu-toggle');
+      const nav = document.getElementById('site-navigation');
+      if (!toggle || !nav) return;
+      function closeMenu() {
+        nav.classList.remove('mobile-nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+      }
+      toggle.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('mobile-nav-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      });
+      nav.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+      document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeMenu(); });
+      document.addEventListener('click', function (event) {
+        if (!nav.contains(event.target) && !toggle.contains(event.target)) closeMenu();
+      });
+      window.addEventListener('resize', function () { if (window.innerWidth > 900) closeMenu(); });
     })();
   </script>
 </body></html>
